@@ -1,0 +1,91 @@
+*{
+  box-sizing: border-box;  
+}
+:root{
+    --body-page:#123;
+    --nav-page:rgb(69,92,115);
+}
+html{
+    font-family: system-ui;
+}
+body{
+    min-height: 200vh;
+    margin: 0;
+    font-size: 1.25rem;
+    background-color: var(--body-page);
+    color: white;
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 4rem;
+}
+nav{
+    position: sticky;
+    top: 0;
+    background-color:var(--nav-page);
+    max-height: 100svh;
+}
+.nav-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-block: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+.nav-list li{
+    padding: 1rem 2rem;
+    margin-left: 2rem;
+    border-radius: 100vw 0 0 100vw;
+}
+.nav-list li.active{
+    view-transition-name: activeNavTab;
+    background-color: var(--body-page);
+    position: relative;
+}
+.nav-list li:nth-child(1) a{
+    view-transition-name: test-1;
+}
+.nav-list li:nth-child(2) a{
+    view-transition-name: test-2;
+}
+.nav-list li:nth-child(3) a{
+    view-transition-name: test-3;
+}
+.nav-list li:nth-child(4) a{
+    view-transition-name: test-4;
+}
+.nav-list li:nth-child(5) a{
+    view-transition-name: test-5;
+}
+::view-transition-group(activeNavTab){
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+.nav-list li.active::before,
+.nav-list li.active::after{
+    --border-redius:2rem;
+    content: '';
+    position: absolute;
+    width: var(--border-redius);
+    height: var(--border-redius);
+    background: var(--nav-page);
+    right: 0;
+    border-radius: 100vw;
+}
+.nav-list li.active::before{
+    top:calc(var(--border-redius)*-1);
+    box-shadow:10px 10px 0px 10px var(--body-page);
+    border-radius: 0 0 100vh 0;
+}
+.nav-list li.active::after{
+    bottom: calc(var(--border-redius)*-1);
+    box-shadow:10px -10px 0px 10px var(--body-page);
+    border-radius: 0 100vh 0  0;
+}
+.nav-list a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+}
